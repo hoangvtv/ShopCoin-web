@@ -1,0 +1,2 @@
+# ShopCoin-web
+HTML, CSS, JS, REACTJS, REDUX
