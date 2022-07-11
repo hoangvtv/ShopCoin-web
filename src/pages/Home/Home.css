@@ -1,0 +1,58 @@
+.home {
+  background-image: url("https://shopcoinusa.com/wp-content/uploads/2021/12/z3059361473346_23e24c2fb4b09ab90e584573746c7296.jpg");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  position: relative;
+}
+
+.home__background {
+  position: relative;
+}
+
+.home__background__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(242, 158, 51, 0.25);
+}
+
+.home__content {
+  position: absolute;
+  top: 30%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+}
+
+.home__content__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.home__content__subtitle {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.home__content__buttons__image {
+  width: 60%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+.home__content__buttons__image:hover {
+  cursor: pointer;
+}
+
+.home__content__footer {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  font-style: italic;
+}

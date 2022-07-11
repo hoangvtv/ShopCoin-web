@@ -1,0 +1,29 @@
+.deposit-withdraw__content::before {
+  content: "";
+  display: block;
+  position: relative;
+  height: 1px;
+  background: #e6e6e6;
+  top: 55px;
+
+  border: 1px solid #e6e6e6;
+}
+
+.deposit__title {
+  margin: 30px auto;
+  position: relative;
+  z-index: 1;
+  padding: 10px 10px;
+  display: table;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.deposit__subtitle {
+  color: #000;
+  font-size: 1.3rem;
+}
+
+.deposit__strikethrough {
+  border-bottom: 1px solid #000;
+}
