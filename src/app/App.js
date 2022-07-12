@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState, useLayoutEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
 
 import { notification } from "antd";
 import Footer from "../components/Footer/Footer";
@@ -13,15 +14,33 @@ import Register from "../pages/User/Register/Register";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AboutUS from "../pages/AboutUS/AboutUS";
 import NotFound from "../components/NotFound/NotFound";
-import { setCurrentUserAction } from "../redux/actions/UserAction";
+import {
+  logOutAction,
+  setCurrentUserAction,
+} from "../redux/actions/UserAction";
 import Profile from "../pages/User/Profile/Profile";
+import { getCurrentUser } from "../util/APIUtils";
 
 export default function App() {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     dispatch(setCurrentUserAction());
+
+    getCurrentUser()
+      .then((response) => {
+        setCurrentUser(response);
+        setIsAuthenticated(true);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+      });
   }, []);
 
   const handleLogin = () => {
@@ -34,9 +53,22 @@ export default function App() {
     navigate("/");
   };
 
+  const handleLogout = () => {
+    dispatch(logOutAction());
+    notification.success({
+      message: "ShopCoin USA",
+      description: "You have been logged out successfully",
+    });
+    navigate("/");
+  };
+
   return (
     <div>
-      <Header />
+      <Header
+        onLogin={isAuthenticated}
+        onLogout={handleLogout}
+        user={currentUser}
+      />
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route

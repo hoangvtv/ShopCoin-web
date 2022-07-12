@@ -15,6 +15,7 @@ export default function Profile() {
 
   useEffect(() => {
     const username = param.username;
+    console.log("username", username);
     getUserProfile(username)
       .then((response) => {
         setUser(response);
@@ -31,23 +32,50 @@ export default function Profile() {
     (notFound && <NotFound />) || (
       <div className="profile">
         {user ? (
-          <div className="user-profile">
-            <div className="user-details">
-              <div className="user-avatar">
-                <Avatar
-                  className="user-avatar-circle"
-                  style={{
-                    backgroundColor: getAvatarColor(user.name),
-                  }}
-                >
-                  {user.name[0].toUpperCase()}
-                </Avatar>
-              </div>
-              <div className="user-summary">
-                {/* <div className="full-name">{this.state.user.name}</div> */}
-                <div className="username">@{user.username}</div>
-                <div className="user-joined">
-                  {/* Joined {formatDate(user.joinedAt)} */}
+          <div className="user-profile mt-5">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="card">
+                    <div className="card-header">
+                      <h6>USER PROFILE</h6>
+                    </div>
+                    <div className="card-body">
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="">
+                            {" "}
+                            <strong> Username: </strong>{" "}
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="text-right"> {user.username}</div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="">
+                            {" "}
+                            <strong> Email Address: </strong>{" "}
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="text-right"> {user.email}</div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="">
+                            {" "}
+                            <strong> Password: </strong>{" "}
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="text-right"> Change Password</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
