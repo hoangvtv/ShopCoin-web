@@ -41,6 +41,7 @@ export default function Login(props) {
         });
         localStorage.setItem(ACCESS_TOKEN, response.accessToken);
         dispatch(setCurrentUserAction());
+        props.onLogin();
         navigate("/");
       })
       .catch((error) => {

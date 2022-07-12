@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { notification } from "antd";
 import Footer from "../components/Footer/Footer";
@@ -27,7 +27,6 @@ export default function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     dispatch(setCurrentUserAction());
@@ -36,22 +35,11 @@ export default function App() {
       .then((response) => {
         setCurrentUser(response);
         setIsAuthenticated(true);
-        setIsLoading(false);
       })
       .catch((error) => {
-        setIsLoading(false);
+        setIsAuthenticated(false);
       });
   }, []);
-
-  const handleLogin = () => {
-    notification.success({
-      message: "ShopCoin USA",
-      description: "You're successfully logged in.",
-    });
-
-    dispatch(setCurrentUserAction());
-    navigate("/");
-  };
 
   const handleLogout = () => {
     dispatch(logOutAction());
@@ -59,7 +47,12 @@ export default function App() {
       message: "ShopCoin USA",
       description: "You have been logged out successfully",
     });
+    setIsAuthenticated(false);
     navigate("/");
+  };
+
+  const changeLoginStatus = () => {
+    setIsAuthenticated(true);
   };
 
   return (
@@ -82,7 +75,7 @@ export default function App() {
         <Route
           exact
           path="/login"
-          element={<Login onLogin={handleLogin} />}
+          element={<Login onLogin={changeLoginStatus} />}
         ></Route>
 
         <Route exact path="/register" element={<Register />}></Route>

@@ -1,31 +1,8 @@
-import React, { useEffect, useState, memo } from "react";
+import React from "react";
 import "./Header.css";
-import { NavLink, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { notification } from "antd";
-import {
-  logOutAction,
-  setCurrentUserAction,
-} from "../../redux/actions/UserAction";
+import { NavLink } from "react-router-dom";
 
 function Header(props) {
-  const dispatch = useDispatch();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    setIsAuthenticated(props.onLogin);
-  }, []);
-
-  const handleLogout = () => {
-    dispatch(logOutAction());
-    notification.success({
-      message: "ShopCoin USA",
-      description: "You have been logged out successfully",
-    });
-  };
-  console.log("propsLout", props.onLogout);
-  console.log("propsAuthen", props.onLogin);
-  console.log("propsUser", props.user);
   return (
     <div className=" header ">
       <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -34,8 +11,6 @@ function Header(props) {
           className="navbar-brand navbar-brand d-flex align-items-center border-end px-4 px-lg-5"
         >
           <div>
-            {/* <i className="fa fa-car text-primary me-2" />
-            Drivin */}
             <img
               className="header__logo"
               src="http://shopcoinusa.com/wp-content/uploads/2021/12/logo-e1640592718566.png"
