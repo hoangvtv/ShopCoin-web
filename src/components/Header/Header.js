@@ -54,26 +54,27 @@ function Header(props) {
                 >
                   Profile
                 </p>
-                <div className="dropdown-menu bg-light m-0">
-                  <div>
-                    {" "}
-                    <NavLink
-                      to={`/users/${props.user.username}`}
-                      className="dropdown-item bg-light text-dark"
-                    >
-                      Profile
-                    </NavLink>
-                    <p
-                      onClick={() => {
-                        props.onLogout();
-                      }}
-                      style={{ cursor: "pointer" }}
-                      className="dropdown-item"
-                    >
-                      Logout
-                    </p>
+                {props.user && (
+                  <div className="dropdown-menu bg-light m-0">
+                    <div>
+                      <NavLink
+                        to={`/users/${props.user.username}`}
+                        className="dropdown-item bg-light text-dark"
+                      >
+                        Profile
+                      </NavLink>
+                      <p
+                        onClick={() => {
+                          props.onLogout();
+                        }}
+                        style={{ cursor: "pointer" }}
+                        className="dropdown-item"
+                      >
+                        Logout
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
           </div>

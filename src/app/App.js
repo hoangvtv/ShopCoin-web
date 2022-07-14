@@ -75,7 +75,7 @@ export default function App() {
         <Route
           exact
           path="/login"
-          element={<Login onLogin={changeLoginStatus} />}
+          element={<Login changeLoginStatus={changeLoginStatus} />}
         ></Route>
 
         <Route exact path="/register" element={<Register />}></Route>

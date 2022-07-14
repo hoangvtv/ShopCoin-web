@@ -34,6 +34,15 @@ export function login(loginRequest) {
   });
 }
 
+export function changePassword(passwordRequest, username) {
+  console.log("passwordRequest", passwordRequest);
+  return request({
+    url: API_BASE_URL + "/users/changePassword/" + username,
+    method: "PUT",
+    body: JSON.stringify(passwordRequest),
+  });
+}
+
 export function signup(signupRequest) {
   console.log("login: ", signupRequest);
   return request({
