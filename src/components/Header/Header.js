@@ -1,8 +1,20 @@
 import React from "react";
 import "./Header.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logOutAction } from "../../redux/actions/UserAction";
+import { notification } from "antd";
 
 function Header(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log(
+    "Header",
+    useSelector((state) => state.UserReducer.userName)
+  );
+
+  const username = useSelector((state) => state.UserReducer.userName);
+
   return (
     <div className=" header ">
       <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -45,7 +57,7 @@ function Header(props) {
               CONTACT US
             </NavLink>
 
-            {props.onLogin && (
+            {useSelector((state) => state.UserReducer.isAuthenticated) && (
               <div className="nav-item dropdown">
                 <p
                   href="#"
@@ -54,32 +66,38 @@ function Header(props) {
                 >
                   Profile
                 </p>
-                {props.user && (
-                  <div className="dropdown-menu bg-light m-0">
-                    <div>
-                      <NavLink
-                        to={`/users/${props.user.username}`}
-                        className="dropdown-item bg-light text-dark"
-                      >
-                        Profile
-                      </NavLink>
-                      <p
-                        onClick={() => {
-                          props.onLogout();
-                        }}
-                        style={{ cursor: "pointer" }}
-                        className="dropdown-item"
-                      >
-                        Logout
-                      </p>
-                    </div>
+                {/* {props.user && ( */}
+                <div className="dropdown-menu bg-light m-0">
+                  <div>
+                    <NavLink
+                      to={`/users/${username}`}
+                      className="dropdown-item bg-light text-dark"
+                    >
+                      Profile
+                    </NavLink>
+                    <p
+                      onClick={() => {
+                        // props.onLogout();
+                        dispatch(logOutAction());
+                        navigate("/");
+                        notification.success({
+                          message: "ShopCoin USA",
+                          description: "You have been logged out successfully",
+                        });
+                      }}
+                      style={{ cursor: "pointer" }}
+                      className="dropdown-item"
+                    >
+                      Logout
+                    </p>
                   </div>
-                )}
+                </div>
+                {/* )} */}
               </div>
             )}
           </div>
 
-          {!props.onLogin && (
+          {!useSelector((state) => state.UserReducer.isAuthenticated) && (
             <NavLink to="/login" className="nav-item nav-link">
               <button className="btn btn-success header__nav__btn-login">
                 LOGIN

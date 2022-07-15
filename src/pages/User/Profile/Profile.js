@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { changePassword, getUserProfile } from "../../../util/APIUtils";
 import NotFound from "../../../components/NotFound/NotFound";
 import "./Profile.css";
-import { Form, Input, Button, notification } from "antd";
+import { Form, Input, notification } from "antd";
 const FormItem = Form.Item;
 
 export default function Profile() {
-  const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
   const [notFound, setNotFound] = useState(false);
@@ -90,6 +89,12 @@ export default function Profile() {
         notification.success({
           message: "ShopCoin USA",
           description: "Your password has been changed successfully!",
+        });
+        setPasswordOld({
+          value: "",
+        });
+        setPasswordNew({
+          value: "",
         });
       })
       .catch((error) => {
