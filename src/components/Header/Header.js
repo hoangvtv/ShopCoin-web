@@ -30,15 +30,20 @@ function Header(props) {
             />
           </div>
         </NavLink>
+
         <button
+          className="navbar-toggler  me-4"
           type="button"
-          className="navbar-toggler me-4"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarCollapse"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarCollapse">
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <div className="navbar-nav ms-auto p-4 p-lg-0">
             <NavLink to="/" className="nav-item nav-link ">
               Home
@@ -62,11 +67,15 @@ function Header(props) {
                 <p
                   href="#"
                   className="nav-link dropdown-toggle"
-                  data-bs-toggle="dropdown"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
                   Profile
                 </p>
-                {/* {props.user && ( */}
+
                 <div className="dropdown-menu bg-light m-0">
                   <div>
                     <NavLink
@@ -77,7 +86,6 @@ function Header(props) {
                     </NavLink>
                     <p
                       onClick={() => {
-                        // props.onLogout();
                         dispatch(logOutAction());
                         navigate("/");
                         notification.success({

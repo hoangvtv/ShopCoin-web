@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.2.2",
+    "gh-pages": "^4.0.0",
     "google-recaptcha-v2": "^1.0.4",
     "react": "^16.5.2",
     "react-back-to-top-button": "^0.0.14",
